@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "panna-cotta.png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

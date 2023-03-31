@@ -13,5 +13,8 @@ struct Recipe {
     let minute : Int
     let isFavourite : Bool
     let addedDate : String
-    let difficulty : String?
+    let image : UIImage
 }
+
+
+

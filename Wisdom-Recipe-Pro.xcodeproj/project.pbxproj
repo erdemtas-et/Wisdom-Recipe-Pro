@@ -14,6 +14,7 @@
 		5E92CC0529D5801100AB1DC3 /* RecipeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E92CC0429D5801100AB1DC3 /* RecipeCollectionViewCell.swift */; };
 		5E92CC0729D58FFA00AB1DC3 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E92CC0629D58FFA00AB1DC3 /* Extensions.swift */; };
 		5E92CC0929D5907900AB1DC3 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E92CC0829D5907900AB1DC3 /* Helpers.swift */; };
+		5E92CC0C29D62FF300AB1DC3 /* FoodType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E92CC0B29D62FF300AB1DC3 /* FoodType.swift */; };
 		5EB0493A29D4855800F725B2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB0493929D4855800F725B2 /* AppDelegate.swift */; };
 		5EB0493C29D4855800F725B2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB0493B29D4855800F725B2 /* SceneDelegate.swift */; };
 		5EB0494129D4855800F725B2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5EB0493F29D4855800F725B2 /* Main.storyboard */; };
@@ -55,6 +56,7 @@
 		5E92CC0429D5801100AB1DC3 /* RecipeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeCollectionViewCell.swift; sourceTree = "<group>"; };
 		5E92CC0629D58FFA00AB1DC3 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		5E92CC0829D5907900AB1DC3 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
+		5E92CC0B29D62FF300AB1DC3 /* FoodType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodType.swift; sourceTree = "<group>"; };
 		5EB0493629D4855800F725B2 /* Wisdom-Recipe-Pro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wisdom-Recipe-Pro.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EB0493929D4855800F725B2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5EB0493B29D4855800F725B2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -108,6 +110,14 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		5E92CC0A29D62FE700AB1DC3 /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				5E92CC0B29D62FF300AB1DC3 /* FoodType.swift */,
+			);
+			path = Enums;
+			sourceTree = "<group>";
+		};
 		5EB0492D29D4855800F725B2 = {
 			isa = PBXGroup;
 			children = (
@@ -131,6 +141,7 @@
 		5EB0493829D4855800F725B2 /* Wisdom-Recipe-Pro */ = {
 			isa = PBXGroup;
 			children = (
+				5E92CC0A29D62FE700AB1DC3 /* Enums */,
 				5EB0493929D4855800F725B2 /* AppDelegate.swift */,
 				5EB0493B29D4855800F725B2 /* SceneDelegate.swift */,
 				5EB0494A29D4855900F725B2 /* Info.plist */,
@@ -365,6 +376,7 @@
 				5E92CC0929D5907900AB1DC3 /* Helpers.swift in Sources */,
 				5E92CC0029D56F3C00AB1DC3 /* RecipeDetailsViewController.swift in Sources */,
 				5E92CC0729D58FFA00AB1DC3 /* Extensions.swift in Sources */,
+				5E92CC0C29D62FF300AB1DC3 /* FoodType.swift in Sources */,
 				5EB0493A29D4855800F725B2 /* AppDelegate.swift in Sources */,
 				5EB0493C29D4855800F725B2 /* SceneDelegate.swift in Sources */,
 				5EB0497729D4895D00F725B2 /* MainViewController.swift in Sources */,

@@ -12,6 +12,8 @@ class RecipeViewController: UIViewController,RecipeDelegate {
 
     // MARK: - UI Elements
     
+    @IBOutlet var recipeCollectionView: UICollectionView!
+    @IBOutlet var conditionLabel: UILabel!
     
     // MARK: - Properties
     var recipeList = [Recipe]()
@@ -22,6 +24,8 @@ class RecipeViewController: UIViewController,RecipeDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         hideBackButton()
+        checkCountCondition()
+       
         
     }
     
@@ -31,39 +35,49 @@ class RecipeViewController: UIViewController,RecipeDelegate {
         navigationItem.setHidesBackButton(true, animated: true)
     }
 
-    //DELEGATION 
+    //DELEGATION
     func didAddRecipe(recipe: Recipe) {
         recipeList.append(recipe)
+        checkCountCondition()
+        recipeCollectionView.reloadData()
     }
    
     
+    func checkCountCondition() {
+        if recipeList.count == 0 {
+            conditionLabel.text = "You don't have any saved recipe."
+        } else {
+            conditionLabel.isHidden = true
+        }
+    }
+    
     // MARK: - Actions
 
-    @IBAction func addNewRecipePressed(_ sender: UIButton) {
+    @IBAction func addNewRecipePressed(_ sender: UIBarButtonItem) {
         guard let addRecipeVC = storyboard?.instantiateViewController(withIdentifier: "addRecipeVC") as? AddRecipeViewController else { return }
         addRecipeVC.recipeDelegate = self
         navigationController?.pushViewController(addRecipeVC, animated: true)
        
     }
     
-    // TODO - LATER
-    @IBAction func chooseRandomFoodPressed(_ sender: UIButton) {
-        
-    }
 }
 
 extension RecipeViewController : UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return recipeList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let recipeCVC = collectionView.dequeueReusableCell(withReuseIdentifier: "recipeCVC", for: indexPath) as? RecipeCollectionViewCell else {return UICollectionViewCell()}
+        if recipeList.count > 0 {
+            let currentRecipe = recipeList[indexPath.row]
+            recipeCVC.setup(data: currentRecipe)
+        }
         return recipeCVC
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 50, height: 160)
+        return CGSize(width: 160, height: 220)
     }
     
     

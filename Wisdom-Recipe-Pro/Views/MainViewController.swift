@@ -32,12 +32,6 @@ class MainViewController: UIViewController {
     
     // MARK: - Actions
 
-    @IBAction func getStartedPressed(_ sender: UIButton) {
-        let resultVC = storyboard?.instantiateViewController(withIdentifier: "RecipeViewController") as! RecipeViewController
-        navigationController?.pushViewController(resultVC, animated: true)
-    }
-    
-
 }
 
 extension MainViewController  {

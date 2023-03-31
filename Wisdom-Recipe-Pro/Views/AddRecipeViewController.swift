@@ -50,7 +50,7 @@ class AddRecipeViewController: UIViewController {
             showAlert(alertTitle: "Missing or Unsupported Value", alertMessage: "You have to fill the blank fields.")
         } else {
             if let recipeURL = recipeURLTF.text, let cookingTime = cookingTimeTF.text, let recipeTitle = recipeTitleTF.text {
-                let recipe = Recipe(foodName: recipeTitle, webUrl: recipeURL, minute: Int(cookingTime) ?? 45, isFavourite: false, addedDate: Date().getCurrentDate(), difficulty: "Easy")
+              
                 recipeDelegate.didAddRecipe(recipe: recipe)
                 navigationController?.popViewController(animated: true)
             }
