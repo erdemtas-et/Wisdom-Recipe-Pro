@@ -141,11 +141,11 @@
 		5EB0493829D4855800F725B2 /* Wisdom-Recipe-Pro */ = {
 			isa = PBXGroup;
 			children = (
-				5E92CC0A29D62FE700AB1DC3 /* Enums */,
 				5EB0493929D4855800F725B2 /* AppDelegate.swift */,
 				5EB0493B29D4855800F725B2 /* SceneDelegate.swift */,
 				5EB0494A29D4855900F725B2 /* Info.plist */,
 				5EB0496F29D4867D00F725B2 /* Models */,
+				5E92CC0A29D62FE700AB1DC3 /* Enums */,
 				5EB0497129D4868600F725B2 /* Utils */,
 				5EB0497029D4868100F725B2 /* Views */,
 				5EB0497229D4868B00F725B2 /* Resources */,

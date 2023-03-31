@@ -12,7 +12,6 @@ struct Recipe {
     let webUrl : String
     let minute : Int
     let isFavourite : Bool
-    let addedDate : String
     let image : UIImage
 }
 
