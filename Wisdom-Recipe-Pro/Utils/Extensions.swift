@@ -31,3 +31,13 @@ extension Date {
         return dateFormatter.string(from: self)
     }
 }
+
+
+extension UIViewController {
+    func showAlert(alertTitle: String,alertMessage: String) {
+        let alertController = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
+        let alertAction = UIAlertAction(title: "OK", style: .cancel)
+        alertController.addAction(alertAction)
+        present(alertController, animated: true, completion: nil)
+    }
+}

@@ -12,10 +12,12 @@ protocol RecipeDelegate {
 }
 
 class AddRecipeViewController: UIViewController {
-
+    
+    
    
     // MARK: - UI Elements
     
+    @IBOutlet var foodTypePickerView: UIPickerView!
     @IBOutlet var recipeTitleTF: UITextField!
     @IBOutlet var cookingTimeTF: UITextField!
     @IBOutlet var recipeURLTF: UITextField!
@@ -23,6 +25,11 @@ class AddRecipeViewController: UIViewController {
     // MARK: - Properties
     
     var recipeDelegate : RecipeDelegate!
+    var foodTypes : [FoodType] = [.salad, .dessert, .dinner, .sandwich, .snack]
+    var selectedImageName : String?
+  
+    
+  //  var foodImages : [FoodType:UIImage] = []
     
     // MARK: - Life Cycle
     
@@ -30,36 +37,44 @@ class AddRecipeViewController: UIViewController {
         super.viewDidLoad()
         
     }
-    
-    
-    // MARK: - Functions
-    
-    func showAlert(alertTitle: String,alertMessage: String) {
-        let alertController = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
-        let alertAction = UIAlertAction(title: "OK", style: .cancel)
-        alertController.addAction(alertAction)
-        present(alertController, animated: true, completion: nil)
-    }
-    
 
-
+    
+    
     // MARK: - Actions
 
-    @IBAction func addRecipePressed(_ sender: UIButton) {
+    @IBAction func addRecipePressed(_ sender: UIBarButtonItem) {
         if recipeURLTF.text == "" || recipeTitleTF.text == "" || cookingTimeTF.text == "" || cookingTimeTF.text?.rangeOfCharacter(from: CharacterSet.letters) != nil {
             showAlert(alertTitle: "Missing or Unsupported Value", alertMessage: "You have to fill the blank fields.")
         } else {
-            if let recipeURL = recipeURLTF.text, let cookingTime = cookingTimeTF.text, let recipeTitle = recipeTitleTF.text {
-           //   let recipe = Recipe(foodName: <#T##String#>, webUrl: <#T##String#>, minute: <#T##Int#>, isFavourite: <#T##Bool#>, addedDate: <#T##String#>, image: <#T##UIImage#>)
-             //   recipeDelegate.didAddRecipe(recipe: recipe)
+            if let recipeURL = recipeURLTF.text, let cookingTime = cookingTimeTF.text, let recipeTitle = recipeTitleTF.text, let selectedImageName = selectedImageName {
+                
+                let selectedImage = foodImageList[selectedImageName]?.randomElement()
+                
+                let recipe = Recipe(foodName: recipeTitle, webUrl: recipeURL, minute: cookingTime, image: UIImage(named: selectedImage!)!)
+                recipeDelegate.didAddRecipe(recipe: recipe)
                 navigationController?.popViewController(animated: true)
             }
         }
-        
+    }
+}
+
+
+    // MARK: Handle UIPickerView
+extension AddRecipeViewController : UIPickerViewDelegate,UIPickerViewDataSource  {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return foodTypes.count
     }
     
-    @IBAction func cancelRecipePressed(_ sender: UIButton) {
-        navigationController?.popViewController(animated: true)
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return foodTypes[row].rawValue
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        selectedImageName =  foodTypes[row].rawValue
     }
 }
 

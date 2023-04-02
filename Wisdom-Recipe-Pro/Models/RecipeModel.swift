@@ -10,8 +10,8 @@ import UIKit
 struct Recipe {
     let foodName : String
     let webUrl : String
-    let minute : Int
-    let isFavourite : Bool
+    let minute : String
+    var isFavourite : Bool = false
     let image : UIImage
 }
 

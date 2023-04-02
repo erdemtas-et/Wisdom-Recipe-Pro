@@ -7,10 +7,10 @@
 
 import Foundation
 
-enum FoodType {
-    case sandwich
-    case dinner
-    case dessert
-    case snack
-    case salad
+enum FoodType : String {
+    case sandwich = "Sandwich"
+    case dinner = "Dinner"
+    case dessert = "Dessert"
+    case snack = "Snack"
+    case salad = "Salad"
 }
