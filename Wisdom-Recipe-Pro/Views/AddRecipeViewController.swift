@@ -29,8 +29,6 @@ class AddRecipeViewController: UIViewController {
     var selectedImageName : String?
   
     
-  //  var foodImages : [FoodType:UIImage] = []
-    
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
@@ -52,6 +50,9 @@ class AddRecipeViewController: UIViewController {
                 
                 let recipe = Recipe(foodName: recipeTitle, webUrl: recipeURL, minute: cookingTime, image: UIImage(named: selectedImage!)!)
                 recipeDelegate.didAddRecipe(recipe: recipe)
+                
+                showConfirm()
+                
                 navigationController?.popViewController(animated: true)
             }
         }

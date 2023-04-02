@@ -8,3 +8,5 @@
 import UIKit
 
 let foodImageList : [String: [String]] = [FoodType.salad.rawValue : ["salad"],FoodType.dessert.rawValue : ["dessert","pancakes","panna-cotta"],FoodType.dinner.rawValue : ["meal","christas-dinner"],FoodType.sandwich.rawValue : ["sandwich","toast"],FoodType.snack.rawValue : ["cashew"]]
+
+
