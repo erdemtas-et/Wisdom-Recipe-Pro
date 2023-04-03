@@ -32,16 +32,17 @@ class AddRecipeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         hideKeyboard()
+        setupTextFields()
+        addButton.isEnabled = false
     }
 
     // MARK: - Functions
     
-    func validateTextFields() {
-        if recipeURLTF.text == "" || recipeTitleTF.text == "" || cookingTimeTF.text == "" {
-            addButton.isEnabled = false
-        } else {
-            addButton.isEnabled = true
-        }
+    func setupTextFields() {
+        recipeURLTF.addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: UIControl.Event.editingChanged)
+        cookingTimeTF.addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: UIControl.Event.editingChanged)
+        recipeTitleTF.addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: UIControl.Event.editingChanged)
+        
     }
 
     
@@ -89,8 +90,12 @@ extension AddRecipeViewController : UIPickerViewDelegate,UIPickerViewDataSource 
 
     // MARK: Handle UITextFieldDelegate
  extension AddRecipeViewController: UITextFieldDelegate {
-     func textFieldDidChangeSelection(_ textField: UITextField) {
-         print(textField.text)
+     @objc func textFieldDidChange(_ textField: UITextField) {
+         if recipeTitleTF.text!.isEmpty || recipeURLTF.text!.isEmpty || cookingTimeTF.text!.isEmpty{
+             addButton.isEnabled = false
+         } else {
+             addButton.isEnabled = true
+         }
      }
 }
 
