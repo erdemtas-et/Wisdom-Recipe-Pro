@@ -57,9 +57,7 @@ class RecipeViewController: UIViewController,RecipeDelegate {
         guard let addRecipeVC = storyboard?.instantiateViewController(withIdentifier: "addRecipeVC") as? AddRecipeViewController else { return }
         addRecipeVC.recipeDelegate = self
         navigationController?.pushViewController(addRecipeVC, animated: true)
-       
     }
-    
 }
 
 extension RecipeViewController : UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
@@ -77,7 +75,13 @@ extension RecipeViewController : UICollectionViewDelegate,UICollectionViewDataSo
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+      //  let sectionInsets = UIEdgeInsets(top: 5.0, left: 2.0, bottom: 5.0, right: 2.0)
+        
         return CGSize(width: 160, height: 220)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print(recipeList[indexPath.row])
     }
     
     

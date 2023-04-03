@@ -13,10 +13,9 @@ protocol RecipeDelegate {
 
 class AddRecipeViewController: UIViewController {
     
-    
-   
     // MARK: - UI Elements
     
+    @IBOutlet var addButton: UIBarButtonItem!
     @IBOutlet var foodTypePickerView: UIPickerView!
     @IBOutlet var recipeTitleTF: UITextField!
     @IBOutlet var cookingTimeTF: UITextField!
@@ -27,37 +26,46 @@ class AddRecipeViewController: UIViewController {
     var recipeDelegate : RecipeDelegate!
     var foodTypes : [FoodType] = [.salad, .dessert, .dinner, .sandwich, .snack]
     var selectedImageName : String?
-  
     
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        hideKeyboard()
+    }
+
+    // MARK: - Functions
+    
+    func validateTextFields() {
+        if recipeURLTF.text == "" || recipeTitleTF.text == "" || cookingTimeTF.text == "" {
+            addButton.isEnabled = false
+        } else {
+            addButton.isEnabled = true
+        }
     }
 
     
     
     // MARK: - Actions
 
-    @IBAction func addRecipePressed(_ sender: UIBarButtonItem) {
-        if recipeURLTF.text == "" || recipeTitleTF.text == "" || cookingTimeTF.text == "" || cookingTimeTF.text?.rangeOfCharacter(from: CharacterSet.letters) != nil {
-            showAlert(alertTitle: "Missing or Unsupported Value", alertMessage: "You have to fill the blank fields.")
-        } else {
-            if let recipeURL = recipeURLTF.text, let cookingTime = cookingTimeTF.text, let recipeTitle = recipeTitleTF.text, let selectedImageName = selectedImageName {
-                
-                let selectedImage = foodImageList[selectedImageName]?.randomElement()
-                
-                let recipe = Recipe(foodName: recipeTitle, webUrl: recipeURL, minute: cookingTime, image: UIImage(named: selectedImage!)!)
-                recipeDelegate.didAddRecipe(recipe: recipe)
-                
-                showConfirm()
-                
-                navigationController?.popViewController(animated: true)
+        @IBAction func addRecipePressed(_ sender: UIBarButtonItem) {
+            if recipeURLTF.text == "" || recipeTitleTF.text == "" || cookingTimeTF.text == "" || cookingTimeTF.text?.rangeOfCharacter(from: CharacterSet.letters) != nil {
+                showAlert(alertTitle: "Missing or Unsupported Value", alertMessage: "You have to fill the blank fields.")
+            } else {
+                if let recipeURL = recipeURLTF.text, let cookingTime = cookingTimeTF.text, let recipeTitle = recipeTitleTF.text, let selectedImageName = selectedImageName {
+                    let selectedImage = foodImageList[selectedImageName]?.randomElement()
+                    let recipe = Recipe(foodName: recipeTitle, webUrl: recipeURL, minute: cookingTime, image: UIImage(named: selectedImage!)!)
+                    recipeDelegate.didAddRecipe(recipe: recipe)
+                    DispatchQueue.main.async {
+                        self.addButton.isEnabled = false
+                        self.showConfirm()
+                    }
+                }
             }
         }
     }
-}
+  
+
 
 
     // MARK: Handle UIPickerView
@@ -77,6 +85,13 @@ extension AddRecipeViewController : UIPickerViewDelegate,UIPickerViewDataSource 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         selectedImageName =  foodTypes[row].rawValue
     }
+}
+
+    // MARK: Handle UITextFieldDelegate
+ extension AddRecipeViewController: UITextFieldDelegate {
+     func textFieldDidChangeSelection(_ textField: UITextField) {
+         print(textField.text)
+     }
 }
 
 
