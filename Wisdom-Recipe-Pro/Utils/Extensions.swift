@@ -23,10 +23,6 @@ extension AddRecipeViewController {
          view.addSubview(animationView!)
          animationView!.play()
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            self.navigationController?.popViewController(animated: true)
-        }
-        
     }
 }
 

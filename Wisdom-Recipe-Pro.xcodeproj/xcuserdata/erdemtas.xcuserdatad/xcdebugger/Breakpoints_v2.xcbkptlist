@@ -7,16 +7,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "E04DFDF3-9EC3-4F6B-852E-26633C19890B"
+            uuid = "A5FE5B8A-3F1C-4FD7-AE05-BDEC42F8BDF0"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Wisdom-Recipe-Pro/Views/RecipeViewController.swift"
+            filePath = "Wisdom-Recipe-Pro/Views/AddRecipeViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "74"
-            endingLineNumber = "74"
-            landmarkName = "checkCountCondition()"
+            startingLineNumber = "57"
+            endingLineNumber = "57"
+            landmarkName = "addRecipePressed(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

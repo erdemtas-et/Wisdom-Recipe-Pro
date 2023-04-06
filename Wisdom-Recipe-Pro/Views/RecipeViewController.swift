@@ -23,8 +23,6 @@ class RecipeViewController: UIViewController,RecipeDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-     
-      checkCountCondition()
         
         do {
             if let savedData = userDefaults.object(forKey: "Recipes") as? Data {
@@ -34,51 +32,54 @@ class RecipeViewController: UIViewController,RecipeDelegate {
             }
             
         } catch  {
-            print("error")
+            checkCountCondition()
         }
-       
-       
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
+        let addVC = AddRecipeViewController()
+        addVC.recipeDelegate = self
     }
     
     
     // MARK: - Functions
-  
+    func checkCountCondition() {
+       if recipeList.count == 0 {
+           conditionLabel.text = "You don't have any saved recipe."
+       } else {
+           conditionLabel.isHidden = true
+           
+       }
+   }
 
     //DELEGATION
     func didAddRecipe(recipe: Recipe) {
         recipeList.append(recipe)
-       checkCountCondition()
+        checkCountCondition()
         recipeCollectionView.reloadData()
-        
         do {
          let recipeUD =  try JSONEncoder().encode(recipeList)
             userDefaults.set(recipeUD, forKey: "Recipes")
         } catch  {
-           print("error")
+          
         }
           
         
     }
     
-     func checkCountCondition() {
-        if recipeList.count == 0 {
-            conditionLabel.text = "You don't have any saved recipe."
-        } else {
-            conditionLabel.isHidden = true
-            
-        }
-    }
+   
     
     // MARK: - Actions
+    
 
-    @IBAction func addNewRecipePressed(_ sender: UIBarButtonItem) {
-        guard let addRecipeVC = storyboard?.instantiateViewController(withIdentifier: "addRecipeVC") as? AddRecipeViewController else { return }
-        addRecipeVC.recipeDelegate = self
-       
-    }
 }
 
+// MARK: - Extensions
+
 extension RecipeViewController : UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
+   
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return recipeList.count
     }
@@ -110,7 +111,6 @@ extension RecipeViewController : UICollectionViewDelegate,UICollectionViewDataSo
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
             return UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         }
-    
     
 }
 

@@ -13,6 +13,7 @@ protocol RecipeDelegate {
 
 class AddRecipeViewController: UIViewController {
     
+    
     // MARK: - UI Elements
     
     @IBOutlet var addButton: UIBarButtonItem!
@@ -52,17 +53,18 @@ class AddRecipeViewController: UIViewController {
                 showAlert(alertTitle: "Missing or Unsupported Value", alertMessage: "You have to fill the blank fields.")
             } else {
                 if let recipeURL = recipeURLTF.text, let cookingTime = cookingTimeTF.text, let recipeTitle = recipeTitleTF.text, let selectedImageName = selectedImageName {
-                   
-                    let recipe = Recipe(foodName: recipeTitle, webUrl: recipeURL, minute: cookingTime, imageName: selectedImageName)
-                    recipeDelegate.didAddRecipe(recipe: recipe)
-                    DispatchQueue.main.async {
-                        self.addButton.isEnabled = false
-                        self.showConfirm()
+                        let recipe = Recipe(foodName: recipeTitle, webUrl: recipeURL, minute: cookingTime, imageName: selectedImageName)
+                        recipeDelegate.didAddRecipe(recipe: recipe)
+                        DispatchQueue.main.async {
+                            self.addButton.isEnabled = false
+                            self.showConfirm()
+                        }
                     }
+       
                 }
             }
         }
-    }
+    
   
 
     // MARK: Handle UIPickerView
