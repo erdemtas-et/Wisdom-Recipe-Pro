@@ -33,6 +33,7 @@ class AddRecipeViewController: UIViewController {
         super.viewDidLoad()
         hideKeyboard()
         setupTextFields()
+        foodTypePickerView.selectedRow(inComponent: 0)
         addButton.isEnabled = false
     }
 
@@ -42,11 +43,8 @@ class AddRecipeViewController: UIViewController {
         recipeURLTF.addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: UIControl.Event.editingChanged)
         cookingTimeTF.addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: UIControl.Event.editingChanged)
         recipeTitleTF.addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: UIControl.Event.editingChanged)
-        
     }
 
-    
-    
     // MARK: - Actions
 
         @IBAction func addRecipePressed(_ sender: UIBarButtonItem) {
@@ -54,8 +52,8 @@ class AddRecipeViewController: UIViewController {
                 showAlert(alertTitle: "Missing or Unsupported Value", alertMessage: "You have to fill the blank fields.")
             } else {
                 if let recipeURL = recipeURLTF.text, let cookingTime = cookingTimeTF.text, let recipeTitle = recipeTitleTF.text, let selectedImageName = selectedImageName {
-                    let selectedImage = foodImageList[selectedImageName]?.randomElement()
-                    let recipe = Recipe(foodName: recipeTitle, webUrl: recipeURL, minute: cookingTime, image: UIImage(named: selectedImage!)!)
+                   
+                    let recipe = Recipe(foodName: recipeTitle, webUrl: recipeURL, minute: cookingTime, imageName: selectedImageName)
                     recipeDelegate.didAddRecipe(recipe: recipe)
                     DispatchQueue.main.async {
                         self.addButton.isEnabled = false
@@ -67,9 +65,8 @@ class AddRecipeViewController: UIViewController {
     }
   
 
-
-
     // MARK: Handle UIPickerView
+
 extension AddRecipeViewController : UIPickerViewDelegate,UIPickerViewDataSource  {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -86,9 +83,11 @@ extension AddRecipeViewController : UIPickerViewDelegate,UIPickerViewDataSource 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         selectedImageName =  foodTypes[row].rawValue
     }
+    
 }
 
     // MARK: Handle UITextFieldDelegate
+
  extension AddRecipeViewController: UITextFieldDelegate {
      @objc func textFieldDidChange(_ textField: UITextField) {
          if recipeTitleTF.text!.isEmpty || recipeURLTF.text!.isEmpty || cookingTimeTF.text!.isEmpty{

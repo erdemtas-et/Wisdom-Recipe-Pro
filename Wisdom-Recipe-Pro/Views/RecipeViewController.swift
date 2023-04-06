@@ -17,7 +17,7 @@ class RecipeViewController: UIViewController,RecipeDelegate {
     
     // MARK: - Properties
     var recipeList = [Recipe]()
-  
+    let userDefaults = UserDefaults.standard
     
     // MARK: - Life Cycle
     
@@ -25,8 +25,19 @@ class RecipeViewController: UIViewController,RecipeDelegate {
         super.viewDidLoad()
         hideBackButton()
         checkCountCondition()
-       
         
+        do {
+            if let savedData = userDefaults.object(forKey: "Recipes") as? Data {
+                let decodedData = try JSONDecoder().decode([Recipe].self, from: savedData)
+                recipeList = decodedData
+                checkCountCondition()
+            }
+            
+        } catch  {
+            print("error")
+        }
+       
+       
     }
     
     
@@ -40,6 +51,15 @@ class RecipeViewController: UIViewController,RecipeDelegate {
         recipeList.append(recipe)
         checkCountCondition()
         recipeCollectionView.reloadData()
+        
+        do {
+         let recipeUD =  try JSONEncoder().encode(recipeList)
+            userDefaults.set(recipeUD, forKey: "Recipes")
+        } catch  {
+           print("error")
+        }
+          
+        
     }
    
     
@@ -75,14 +95,22 @@ extension RecipeViewController : UICollectionViewDelegate,UICollectionViewDataSo
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-      //  let sectionInsets = UIEdgeInsets(top: 5.0, left: 2.0, bottom: 5.0, right: 2.0)
-        
         return CGSize(width: 160, height: 220)
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(recipeList[indexPath.row])
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)  {
+        guard let recipeDetailsVC = storyboard?.instantiateViewController(withIdentifier: "RecipeDetailsViewController") as? RecipeDetailsViewController else {return}
+        recipeDetailsVC.urlString = recipeList[indexPath.row].webUrl
+        present(recipeDetailsVC, animated: true)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+            return UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        }
     
     
 }

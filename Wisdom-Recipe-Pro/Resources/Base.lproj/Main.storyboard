@@ -205,6 +205,7 @@
                         <outlet property="conditionLabel" destination="naC-Bm-Bxp" id="Ig0-Jc-eIN"/>
                         <outlet property="recipeCollectionView" destination="gYZ-mG-aOW" id="3hC-l2-iwk"/>
                         <segue destination="HWK-4N-QfE" kind="show" id="Vs9-dW-ubq"/>
+                        <segue destination="5GK-lE-PbL" kind="show" id="t2W-J8-qvF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lb9-fk-VXR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -384,8 +385,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x0M-yy-FT2">
-                                <rect key="frame" x="0.0" y="89" width="393" height="729"/>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k5Q-8C-jz6">
+                                <rect key="frame" x="0.0" y="70" width="393" height="748"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <wkWebViewConfiguration key="configuration">
                                     <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
@@ -396,16 +397,20 @@
                         <viewLayoutGuide key="safeArea" id="ZBl-Fm-uqu"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="x0M-yy-FT2" firstAttribute="leading" secondItem="ZBl-Fm-uqu" secondAttribute="leading" id="DtS-er-G5t"/>
-                            <constraint firstItem="x0M-yy-FT2" firstAttribute="top" secondItem="ZBl-Fm-uqu" secondAttribute="top" constant="30" id="djl-bN-jq8"/>
-                            <constraint firstItem="ZBl-Fm-uqu" firstAttribute="bottom" secondItem="x0M-yy-FT2" secondAttribute="bottom" id="lEr-mh-3qf"/>
-                            <constraint firstItem="ZBl-Fm-uqu" firstAttribute="trailing" secondItem="x0M-yy-FT2" secondAttribute="trailing" id="yBl-6O-GNt"/>
+                            <constraint firstItem="k5Q-8C-jz6" firstAttribute="bottom" secondItem="ZBl-Fm-uqu" secondAttribute="bottom" id="HH0-Z7-l5Q"/>
+                            <constraint firstItem="k5Q-8C-jz6" firstAttribute="leading" secondItem="ZBl-Fm-uqu" secondAttribute="leading" id="Sc6-xU-CTL"/>
+                            <constraint firstItem="k5Q-8C-jz6" firstAttribute="top" secondItem="Fh0-0G-AD8" secondAttribute="top" constant="70" id="hNV-0m-L6e"/>
+                            <constraint firstAttribute="trailing" secondItem="k5Q-8C-jz6" secondAttribute="trailing" id="ueH-aL-Oov"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="S7E-bG-64X"/>
+                    <connections>
+                        <outlet property="webView" destination="k5Q-8C-jz6" id="CD1-6r-bn8"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Ej-j5-aEe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2459" y="419"/>
+            <point key="canvasLocation" x="2458.7786259541986" y="418.3098591549296"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="xSL-Vf-6Kd">

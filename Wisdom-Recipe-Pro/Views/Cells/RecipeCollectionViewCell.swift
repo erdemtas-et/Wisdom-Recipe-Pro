@@ -29,7 +29,12 @@ class RecipeCollectionViewCell: UICollectionViewCell {
     func setup(data: Recipe) {
         foodLabel.text = data.foodName
         timeLabel.text = String(data.minute) + " min"
-        foodImage.image = data.image
+        
+        if let image = UIImage(named: (foodImageList[data.imageName]?.randomElement())!) {
+            foodImage.image = image
+        }
+        
+        
     }
     
 }

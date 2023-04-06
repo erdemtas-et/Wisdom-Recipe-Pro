@@ -7,13 +7,16 @@
 
 import UIKit
 
-struct Recipe {
+
+
+struct Recipe : Codable {
     let foodName : String
     let webUrl : String
     let minute : String
     var isFavourite : Bool = false
-    let image : UIImage
+    let imageName : String
 }
+
 
 
 
