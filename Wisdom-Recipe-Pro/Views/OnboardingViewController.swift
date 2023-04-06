@@ -8,20 +8,24 @@
 import UIKit
 import Lottie
 
-class MainViewController: UIViewController {
+class OnboardingViewController: UIViewController {
 
     // MARK: - UI Elements
     
     @IBOutlet var mainAnimationView: LottieAnimationView!
     
     // MARK: - Properties
-    
+   
     
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       configUI()
+        setupAnimation()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+            guard let destinationVC = self.storyboard?.instantiateViewController(withIdentifier: "RecipeViewController") as? RecipeViewController  else {return}
+            self.present(destinationVC, animated: true)
+      }
     }
     
     
@@ -34,9 +38,9 @@ class MainViewController: UIViewController {
 
 }
 
-extension MainViewController  {
+extension OnboardingViewController  {
     
-    private func configUI() {
+    private func setupAnimation() {
         mainAnimationView!.frame = view.bounds
         mainAnimationView!.contentMode = .scaleAspectFit
         mainAnimationView!.loopMode = .loop

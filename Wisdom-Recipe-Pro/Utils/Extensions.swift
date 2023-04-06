@@ -58,4 +58,10 @@ extension UIViewController {
                 view.endEditing(true)
             }
     
+    func hideBackButton() {
+          navigationItem.setHidesBackButton(true, animated: true)
+      }
+    
+    
+    
 }

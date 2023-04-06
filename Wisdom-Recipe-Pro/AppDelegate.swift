@@ -12,9 +12,24 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
-
+    var window: UIWindow?
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+   /*     if UserDefaults.standard.bool(forKey: "hasLaunchedBefore") {
+               // App has launched before, skip onboarding screen
+                    window = UIWindow(frame: UIScreen.main.bounds)
+                    let recipeViewController = RecipeViewController()
+                    window?.rootViewController = recipeViewController
+                    window?.makeKeyAndVisible()
+           } else {
+               // App is launched for the first time, show onboarding screen
+                        window = UIWindow(frame: UIScreen.main.bounds)
+                       let mainViewController = MainViewController()
+                       window?.rootViewController = mainViewController
+                       window?.makeKeyAndVisible()
+                        UserDefaults.standard.set(true, forKey: "hasLaunchedBefore")
+               // ...
+           } */
         return true
     }
 

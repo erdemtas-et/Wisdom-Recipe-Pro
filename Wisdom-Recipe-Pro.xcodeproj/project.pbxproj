@@ -20,12 +20,11 @@
 		5EB0494129D4855800F725B2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5EB0493F29D4855800F725B2 /* Main.storyboard */; };
 		5EB0494429D4855800F725B2 /* Wisdom_Recipe_Pro.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5EB0494229D4855800F725B2 /* Wisdom_Recipe_Pro.xcdatamodeld */; };
 		5EB0494629D4855900F725B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5EB0494529D4855900F725B2 /* Assets.xcassets */; };
-		5EB0494929D4855900F725B2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5EB0494729D4855900F725B2 /* LaunchScreen.storyboard */; };
 		5EB0495429D4855900F725B2 /* Wisdom_Recipe_ProTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB0495329D4855900F725B2 /* Wisdom_Recipe_ProTests.swift */; };
 		5EB0495E29D4855900F725B2 /* Wisdom_Recipe_ProUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB0495D29D4855900F725B2 /* Wisdom_Recipe_ProUITests.swift */; };
 		5EB0496029D4855900F725B2 /* Wisdom_Recipe_ProUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB0495F29D4855900F725B2 /* Wisdom_Recipe_ProUITestsLaunchTests.swift */; };
 		5EB0496E29D4865B00F725B2 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 5EB0496D29D4865B00F725B2 /* Lottie */; };
-		5EB0497729D4895D00F725B2 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB0497629D4895D00F725B2 /* MainViewController.swift */; };
+		5EB0497729D4895D00F725B2 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB0497629D4895D00F725B2 /* OnboardingViewController.swift */; };
 		5EB0497B29D48C7900F725B2 /* 109232-cooking-ingredients.json in Resources */ = {isa = PBXBuildFile; fileRef = 5EB0497A29D48C7900F725B2 /* 109232-cooking-ingredients.json */; };
 		5EB0497E29D49F3900F725B2 /* Omnes-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5EB0497D29D49F2600F725B2 /* Omnes-Bold.ttf */; };
 		5EB0498029D4A90400F725B2 /* RecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB0497F29D4A90400F725B2 /* RecipeViewController.swift */; };
@@ -63,14 +62,13 @@
 		5EB0494029D4855800F725B2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5EB0494329D4855800F725B2 /* Wisdom_Recipe_Pro.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Wisdom_Recipe_Pro.xcdatamodel; sourceTree = "<group>"; };
 		5EB0494529D4855900F725B2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		5EB0494829D4855900F725B2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5EB0494A29D4855900F725B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5EB0494F29D4855900F725B2 /* Wisdom-Recipe-ProTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Wisdom-Recipe-ProTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EB0495329D4855900F725B2 /* Wisdom_Recipe_ProTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wisdom_Recipe_ProTests.swift; sourceTree = "<group>"; };
 		5EB0495929D4855900F725B2 /* Wisdom-Recipe-ProUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Wisdom-Recipe-ProUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EB0495D29D4855900F725B2 /* Wisdom_Recipe_ProUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wisdom_Recipe_ProUITests.swift; sourceTree = "<group>"; };
 		5EB0495F29D4855900F725B2 /* Wisdom_Recipe_ProUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wisdom_Recipe_ProUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		5EB0497629D4895D00F725B2 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		5EB0497629D4895D00F725B2 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		5EB0497A29D48C7900F725B2 /* 109232-cooking-ingredients.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "109232-cooking-ingredients.json"; sourceTree = "<group>"; };
 		5EB0497D29D49F2600F725B2 /* Omnes-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Omnes-Bold.ttf"; sourceTree = "<group>"; };
 		5EB0497F29D4A90400F725B2 /* RecipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeViewController.swift; sourceTree = "<group>"; };
@@ -182,7 +180,7 @@
 		5EB0497029D4868100F725B2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				5EB0497629D4895D00F725B2 /* MainViewController.swift */,
+				5EB0497629D4895D00F725B2 /* OnboardingViewController.swift */,
 				5EB0497F29D4A90400F725B2 /* RecipeViewController.swift */,
 				5E92CBF929D5665300AB1DC3 /* AddRecipeViewController.swift */,
 				5E92CBFF29D56F3C00AB1DC3 /* RecipeDetailsViewController.swift */,
@@ -206,7 +204,6 @@
 				5EB0497C29D49F1B00F725B2 /* Fonts */,
 				5EB0497329D4877B00F725B2 /* Lottie Animations */,
 				5EB0493F29D4855800F725B2 /* Main.storyboard */,
-				5EB0494729D4855900F725B2 /* LaunchScreen.storyboard */,
 				5EB0494529D4855900F725B2 /* Assets.xcassets */,
 			);
 			path = Resources;
@@ -340,7 +337,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5E92CC0229D57DB900AB1DC3 /* 94433-green-success-confirmation.json in Resources */,
-				5EB0494929D4855900F725B2 /* LaunchScreen.storyboard in Resources */,
 				5EB0497E29D49F3900F725B2 /* Omnes-Bold.ttf in Resources */,
 				5EB0494629D4855900F725B2 /* Assets.xcassets in Resources */,
 				5EB0497B29D48C7900F725B2 /* 109232-cooking-ingredients.json in Resources */,
@@ -379,7 +375,7 @@
 				5E92CC0C29D62FF300AB1DC3 /* FoodType.swift in Sources */,
 				5EB0493A29D4855800F725B2 /* AppDelegate.swift in Sources */,
 				5EB0493C29D4855800F725B2 /* SceneDelegate.swift in Sources */,
-				5EB0497729D4895D00F725B2 /* MainViewController.swift in Sources */,
+				5EB0497729D4895D00F725B2 /* OnboardingViewController.swift in Sources */,
 				5EB0498029D4A90400F725B2 /* RecipeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -423,14 +419,6 @@
 				5EB0494029D4855800F725B2 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		5EB0494729D4855900F725B2 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				5EB0494829D4855900F725B2 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

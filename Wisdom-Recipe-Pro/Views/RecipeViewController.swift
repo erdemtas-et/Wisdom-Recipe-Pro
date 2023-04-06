@@ -23,8 +23,8 @@ class RecipeViewController: UIViewController,RecipeDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        hideBackButton()
-        checkCountCondition()
+     
+      checkCountCondition()
         
         do {
             if let savedData = userDefaults.object(forKey: "Recipes") as? Data {
@@ -42,14 +42,12 @@ class RecipeViewController: UIViewController,RecipeDelegate {
     
     
     // MARK: - Functions
-   private func hideBackButton() {
-        navigationItem.setHidesBackButton(true, animated: true)
-    }
+  
 
     //DELEGATION
     func didAddRecipe(recipe: Recipe) {
         recipeList.append(recipe)
-        checkCountCondition()
+       checkCountCondition()
         recipeCollectionView.reloadData()
         
         do {
@@ -61,13 +59,13 @@ class RecipeViewController: UIViewController,RecipeDelegate {
           
         
     }
-   
     
-    func checkCountCondition() {
+     func checkCountCondition() {
         if recipeList.count == 0 {
             conditionLabel.text = "You don't have any saved recipe."
         } else {
             conditionLabel.isHidden = true
+            
         }
     }
     
@@ -76,7 +74,7 @@ class RecipeViewController: UIViewController,RecipeDelegate {
     @IBAction func addNewRecipePressed(_ sender: UIBarButtonItem) {
         guard let addRecipeVC = storyboard?.instantiateViewController(withIdentifier: "addRecipeVC") as? AddRecipeViewController else { return }
         addRecipeVC.recipeDelegate = self
-        navigationController?.pushViewController(addRecipeVC, animated: true)
+       
     }
 }
 
@@ -95,6 +93,7 @@ extension RecipeViewController : UICollectionViewDelegate,UICollectionViewDataSo
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
         return CGSize(width: 160, height: 220)
     }
     

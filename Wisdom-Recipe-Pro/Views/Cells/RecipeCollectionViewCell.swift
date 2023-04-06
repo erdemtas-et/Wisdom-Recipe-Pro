@@ -15,7 +15,7 @@ class RecipeCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
             super.awakeFromNib()
-        layer.cornerRadius = 6.0
+        layer.cornerRadius = 12.0
         layer.borderWidth = 1.0
         layer.borderColor = UIColor.clear.cgColor
         layer.backgroundColor = UIColor.white.cgColor
