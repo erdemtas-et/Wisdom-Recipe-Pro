@@ -13,9 +13,6 @@ extension AddRecipeViewController {
     func showConfirm() {
         var animationView: LottieAnimationView?
         animationView = .init(name: "94433-green-success-confirmation")
-    //    let modalView = UIView(frame: UIScreen.main.bounds)
-      //  modalView.backgroundColor = UIColor.black.withAlphaComponent(0.7)
-        //  view.addSubview(modalView)
         animationView!.frame = view.bounds
         animationView!.contentMode = .scaleAspectFit
         animationView!.loopMode = .playOnce

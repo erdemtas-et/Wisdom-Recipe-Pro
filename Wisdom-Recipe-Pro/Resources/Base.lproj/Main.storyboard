@@ -16,10 +16,10 @@
         </array>
     </customFonts>
     <scenes>
-        <!--Main View Controller-->
+        <!--Onboarding View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="MainViewController" customModule="Wisdom_Recipe_Pro" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="OnboardingViewController" customModule="Wisdom_Recipe_Pro" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -88,7 +88,7 @@
         <!--All Recipes-->
         <scene sceneID="fFR-1d-qWG">
             <objects>
-                <viewController storyboardIdentifier="RecipeViewController" id="iye-LK-uJD" customClass="RecipeViewController" customModule="Wisdom_Recipe_Pro" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RecipeViewController" id="iye-LK-uJD" customClass="MainViewController" customModule="Wisdom_Recipe_Pro" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cB2-3B-4sb">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -204,6 +204,7 @@
                     <connections>
                         <outlet property="conditionLabel" destination="naC-Bm-Bxp" id="Ig0-Jc-eIN"/>
                         <outlet property="recipeCollectionView" destination="gYZ-mG-aOW" id="3hC-l2-iwk"/>
+                        <outlet property="searchTextField" destination="4sw-gh-ve3" id="j5M-9W-Ngu"/>
                         <segue destination="HWK-4N-QfE" kind="show" id="Vs9-dW-ubq"/>
                         <segue destination="5GK-lE-PbL" kind="show" id="t2W-J8-qvF"/>
                     </connections>
@@ -386,7 +387,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k5Q-8C-jz6">
-                                <rect key="frame" x="0.0" y="70" width="393" height="748"/>
+                                <rect key="frame" x="0.0" y="142" width="393" height="676"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <wkWebViewConfiguration key="configuration">
                                     <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
@@ -399,7 +400,7 @@
                         <constraints>
                             <constraint firstItem="k5Q-8C-jz6" firstAttribute="bottom" secondItem="ZBl-Fm-uqu" secondAttribute="bottom" id="HH0-Z7-l5Q"/>
                             <constraint firstItem="k5Q-8C-jz6" firstAttribute="leading" secondItem="ZBl-Fm-uqu" secondAttribute="leading" id="Sc6-xU-CTL"/>
-                            <constraint firstItem="k5Q-8C-jz6" firstAttribute="top" secondItem="Fh0-0G-AD8" secondAttribute="top" constant="70" id="hNV-0m-L6e"/>
+                            <constraint firstItem="k5Q-8C-jz6" firstAttribute="top" secondItem="Fh0-0G-AD8" secondAttribute="top" constant="142" id="hNV-0m-L6e"/>
                             <constraint firstAttribute="trailing" secondItem="k5Q-8C-jz6" secondAttribute="trailing" id="ueH-aL-Oov"/>
                         </constraints>
                     </view>
