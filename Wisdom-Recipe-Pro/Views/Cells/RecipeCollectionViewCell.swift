@@ -24,6 +24,7 @@ class RecipeCollectionViewCell: UICollectionViewCell {
         layer.shadowRadius = 4.0
         layer.shadowOpacity = 2.0
         layer.masksToBounds = false
+        
         }
 
     func setup(data: Recipe) {

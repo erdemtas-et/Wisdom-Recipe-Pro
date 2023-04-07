@@ -24,7 +24,7 @@ class AddRecipeViewController: UIViewController {
     // MARK: - Properties
     
     var recipeDelegate : RecipeDelegate!
-    var foodTypes : [FoodType] = [.salad, .dessert, .dinner, .sandwich, .snack]
+    var foodTypes : [FoodType] = [.salad, .dessert, .dinner, .sandwich, .snack,.burger,.cake,.pasta]
     var selectedImageName : String?
     
     // MARK: - Life Cycle

@@ -99,18 +99,19 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
                             </textField>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="gYZ-mG-aOW">
-                                <rect key="frame" x="8" y="280" width="377" height="528"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" indicatorStyle="black" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="gYZ-mG-aOW">
+                                <rect key="frame" x="8" y="249" width="377" height="559"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="bOK-go-Uov">
-                                    <size key="itemSize" width="128" height="128"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="bOK-go-Uov">
+                                    <size key="itemSize" width="160" height="220"/>
+                                    <size key="estimatedItemSize" width="128" height="128"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                    <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="recipeCVC" id="zL6-R1-C3f" customClass="RecipeCollectionViewCell" customModule="Wisdom_Recipe_Pro" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="160" height="220"/>
+                                        <rect key="frame" x="10" y="10" width="160" height="220"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="rpN-QB-nzk">
                                             <rect key="frame" x="0.0" y="0.0" width="160" height="220"/>
@@ -169,11 +170,11 @@
                                 </connections>
                             </collectionView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="naC-Bm-Bxp">
-                                <rect key="frame" x="30" y="219" width="333" height="30"/>
+                                <rect key="frame" x="30" y="209" width="333" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="i0G-tB-94W"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -182,12 +183,12 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="P4r-1n-GNp" firstAttribute="trailing" secondItem="4sw-gh-ve3" secondAttribute="trailing" constant="20" id="4J5-67-JmK"/>
-                            <constraint firstItem="gYZ-mG-aOW" firstAttribute="top" secondItem="naC-Bm-Bxp" secondAttribute="bottom" constant="31" id="5Il-2b-DVy"/>
+                            <constraint firstItem="gYZ-mG-aOW" firstAttribute="top" secondItem="naC-Bm-Bxp" secondAttribute="bottom" constant="10" id="5Il-2b-DVy"/>
                             <constraint firstItem="4sw-gh-ve3" firstAttribute="leading" secondItem="P4r-1n-GNp" secondAttribute="leading" constant="20" id="7Pf-fM-bOe"/>
                             <constraint firstItem="P4r-1n-GNp" firstAttribute="bottom" secondItem="gYZ-mG-aOW" secondAttribute="bottom" constant="10" id="Hnq-FJ-R3V"/>
                             <constraint firstItem="4sw-gh-ve3" firstAttribute="top" secondItem="P4r-1n-GNp" secondAttribute="top" constant="10" id="KSu-fj-z1E"/>
                             <constraint firstItem="gYZ-mG-aOW" firstAttribute="leading" secondItem="P4r-1n-GNp" secondAttribute="leading" constant="8" id="RRy-5p-VYn"/>
-                            <constraint firstItem="naC-Bm-Bxp" firstAttribute="top" secondItem="4sw-gh-ve3" secondAttribute="bottom" constant="20" id="YQt-Dg-CHa"/>
+                            <constraint firstItem="naC-Bm-Bxp" firstAttribute="top" secondItem="4sw-gh-ve3" secondAttribute="bottom" constant="10" id="YQt-Dg-CHa"/>
                             <constraint firstItem="P4r-1n-GNp" firstAttribute="trailing" secondItem="gYZ-mG-aOW" secondAttribute="trailing" constant="8" id="hAb-hh-39b"/>
                             <constraint firstItem="naC-Bm-Bxp" firstAttribute="leading" secondItem="P4r-1n-GNp" secondAttribute="leading" constant="30" id="vBw-kh-0Wk"/>
                             <constraint firstItem="P4r-1n-GNp" firstAttribute="trailing" secondItem="naC-Bm-Bxp" secondAttribute="trailing" constant="30" id="vVd-c3-492"/>
@@ -428,7 +429,7 @@
                             <color key="textColor" red="1" green="0.54585516710000004" blue="0.45046678489999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         </textAttributes>
                         <textAttributes key="largeTitleTextAttributes">
-                            <fontDescription key="fontDescription" name="Omnes-Bold" family="Omnes" pointSize="30"/>
+                            <fontDescription key="fontDescription" name="Omnes-Bold" family="Omnes" pointSize="26"/>
                             <color key="textColor" red="1" green="0.54585516710000004" blue="0.45046678489999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         </textAttributes>
                     </navigationBar>

@@ -26,6 +26,7 @@ class MainViewController: UIViewController,RecipeDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         hideBackButton()
+        hideKeyboard()
         checkCountCondition()
         searchTextField.delegate = self
         
@@ -101,6 +102,7 @@ extension MainViewController : UICollectionViewDelegate,UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
         return CGSize(width: 160, height: 220)
     }
     
@@ -121,8 +123,12 @@ extension MainViewController : UICollectionViewDelegate,UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+       
             return UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         }
+    
+  
+   
     
 }
 

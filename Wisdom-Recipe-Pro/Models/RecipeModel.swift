@@ -7,8 +7,6 @@
 
 import UIKit
 
-
-
 struct Recipe : Codable {
     let foodName : String
     let webUrl : String
