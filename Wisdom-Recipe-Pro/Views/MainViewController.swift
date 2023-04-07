@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MainViewController: UIViewController,RecipeDelegate {
+class MainViewController: UIViewController,RecipeDelegate, UIGestureRecognizerDelegate {
     
 
     // MARK: - UI Elements
@@ -39,6 +39,17 @@ class MainViewController: UIViewController,RecipeDelegate {
         } catch  {
             print("error")
         }
+        
+        
+        func setupLongGestureRecognizerOnCollection() {
+                let longPressedGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(gestureRecognizer:)))
+                longPressedGesture.minimumPressDuration = 0.5
+                longPressedGesture.delegate = self
+                longPressedGesture.delaysTouchesBegan = true
+                recipeCollectionView.addGestureRecognizer(longPressedGesture)
+            }
+
+            setupLongGestureRecognizerOnCollection()
    
     }
     
@@ -46,6 +57,20 @@ class MainViewController: UIViewController,RecipeDelegate {
    private func hideBackButton() {
         navigationItem.setHidesBackButton(true, animated: true)
     }
+ 
+  
+    @objc func handleLongPress(gestureRecognizer: UILongPressGestureRecognizer) {
+            if (gestureRecognizer.state != .began) {
+                return
+            }
+            let p = gestureRecognizer.location(in: recipeCollectionView)
+            if let indexPath = recipeCollectionView.indexPathForItem(at: p) {
+                print(indexPath)
+            }
+        }
+
+    
+    
 
     //DELEGATION
     func didAddRecipe(recipe: Recipe) {
@@ -102,12 +127,11 @@ extension MainViewController : UICollectionViewDelegate,UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
         return CGSize(width: 160, height: 220)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 0
+        return 10
     }
     
     // Collection View Selected Cell
@@ -123,13 +147,8 @@ extension MainViewController : UICollectionViewDelegate,UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-       
             return UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         }
-    
-  
-   
-    
 }
 
 extension MainViewController: UITextFieldDelegate {
