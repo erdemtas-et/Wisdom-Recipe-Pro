@@ -13,4 +13,6 @@ enum FoodType : String {
     case dessert = "Dessert"
     case snack = "Snack"
     case salad = "Salad"
+    case pasta = "Pasta"
+    case burger = "Burger"
 }

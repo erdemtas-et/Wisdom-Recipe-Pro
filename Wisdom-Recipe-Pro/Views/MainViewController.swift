@@ -128,14 +128,15 @@ extension MainViewController : UICollectionViewDelegate,UICollectionViewDataSour
 
 extension MainViewController: UITextFieldDelegate {
     func textFieldDidChangeSelection(_ textField: UITextField) {
-        if let searchTextFieldValue = searchTextField.text, !searchTextFieldValue.isEmpty {
+        if searchTextField.text != "",let searchTFValue = searchTextField.text {
             filteredRecipeList = recipeList.filter { recipe in
-                return recipe.foodName.lowercased().contains(searchTextFieldValue)
+                return recipe.foodName.lowercased().contains((searchTFValue.lowercased()))
             }
-            recipeCollectionView.reloadData()
         } else {
-            recipeCollectionView.reloadData()
+            filteredRecipeList.removeAll()
         }
+       
+        recipeCollectionView.reloadData()
     }
     
 }
