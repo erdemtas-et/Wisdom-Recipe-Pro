@@ -161,7 +161,6 @@ extension MainViewController : UICollectionViewDelegate,UICollectionViewDataSour
                 collectionView.isHidden = false
             }
         }
-        
         return recipeCVC
     }
     
