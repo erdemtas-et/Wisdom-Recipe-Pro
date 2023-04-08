@@ -40,19 +40,20 @@ extension Date {
 extension UIViewController {
     func showAlert(alertTitle: String,alertMessage: String) {
         let alertController = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
-        let alertAction = UIAlertAction(title: "OK", style: .cancel)
-        alertController.addAction(alertAction)
+        let cancelAction = UIAlertAction(title: alertTitle, style: UIAlertAction.Style.cancel)
+        alertController.addAction(cancelAction)
         present(alertController, animated: true, completion: nil)
     }
     
+    
     func hideKeyboard() {
-                let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-                tap.cancelsTouchesInView = false
-                view.addGestureRecognizer(tap)
-            }
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
             
-            @objc func dismissKeyboard() {
-                view.endEditing(true)
-            }
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
     
 }

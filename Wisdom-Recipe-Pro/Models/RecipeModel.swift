@@ -7,12 +7,16 @@
 
 import UIKit
 
-struct Recipe : Codable {
+struct Recipe : Codable,Equatable {
     let foodName : String
     let webUrl : String
     let minute : String
     var isFavourite : Bool = false
     let imageName : String
+    
+    static func ==(lhs: Recipe, rhs: Recipe) -> Bool {
+        return lhs.webUrl == rhs.webUrl
+        }
 }
 
 
