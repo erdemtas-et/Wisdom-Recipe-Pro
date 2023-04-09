@@ -9,7 +9,7 @@ import UIKit
 
 class MainViewController: UIViewController,RecipeDelegate, UIGestureRecognizerDelegate {
     
-
+    
     // MARK: - UI Elements
     
     @IBOutlet var recipeCollectionView: UICollectionView!
@@ -17,10 +17,8 @@ class MainViewController: UIViewController,RecipeDelegate, UIGestureRecognizerDe
     @IBOutlet var conditionLabel: UILabel!
     
     // MARK: - Properties
-    var recipeList = [Recipe]()
-    let userDefaults = UserDefaults.standard
-    var filteredRecipeList = [Recipe]()
-    
+    var recipeViewModel = RecipeViewModel()
+  
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
@@ -30,15 +28,8 @@ class MainViewController: UIViewController,RecipeDelegate, UIGestureRecognizerDe
         checkCountCondition()
         searchTextField.delegate = self
         
-        do {
-            if let savedData = userDefaults.object(forKey: "Recipes") as? Data {
-                let decodedData = try JSONDecoder().decode([Recipe].self, from: savedData)
-                recipeList = decodedData
-                checkCountCondition()
-            }
-        } catch  {
-            print("error")
-        }
+        
+        recipeViewModel.loadLocalData()
         
         
         func setupLongGestureRecognizerOnCollection() {
@@ -48,9 +39,7 @@ class MainViewController: UIViewController,RecipeDelegate, UIGestureRecognizerDe
                 longPressedGesture.delaysTouchesBegan = true
                 recipeCollectionView.addGestureRecognizer(longPressedGesture)
             }
-
             setupLongGestureRecognizerOnCollection()
-   
     }
     
     // MARK: - Functions
@@ -58,6 +47,8 @@ class MainViewController: UIViewController,RecipeDelegate, UIGestureRecognizerDe
         navigationItem.setHidesBackButton(true, animated: true)
     }
  
+   
+    
   
     @objc func handleLongPress(gestureRecognizer: UILongPressGestureRecognizer) {
         if (gestureRecognizer.state != .began) {
@@ -71,20 +62,20 @@ class MainViewController: UIViewController,RecipeDelegate, UIGestureRecognizerDe
     
     func deleteAlert(alertTitle: String,alertMessage: String,collectionView: UICollectionView,selectedIndex : Int) {
         let alertController = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
-        let deleteAction = UIAlertAction(title: "Yes", style: UIAlertAction.Style.default) {_ in
-            if !self.filteredRecipeList.isEmpty {
-                if let index = self.recipeList.firstIndex(of: self.filteredRecipeList[selectedIndex]) {
-                    self.recipeList.remove(at: index)
-                    self.setLocalData()
+        let deleteAction = UIAlertAction(title: "Yes", style: UIAlertAction.Style.default) { [self]_ in
+            if !(self.recipeViewModel.filteredRecipeList.isEmpty){
+                if let index = recipeViewModel.recipeList.firstIndex(of: (recipeViewModel.filteredRecipeList[selectedIndex])) {
+                    self.recipeViewModel.recipeList.remove(at: index)
+                    self.recipeViewModel.setLocalData()
                     self.recipeCollectionView.reloadData()
                 }
-                self.filteredRecipeList.remove(at: selectedIndex)
-                self.setLocalData()
+                self.recipeViewModel.filteredRecipeList.remove(at: selectedIndex)
+                self.recipeViewModel.setLocalData()
                 self.recipeCollectionView.reloadData()
       
             } else {
-                self.recipeList.remove(at: selectedIndex)
-                self.setLocalData()
+                self.recipeViewModel.recipeList.remove(at: selectedIndex)
+                self.recipeViewModel.setLocalData()
                 self.recipeCollectionView.reloadData()
             }
         }
@@ -96,26 +87,19 @@ class MainViewController: UIViewController,RecipeDelegate, UIGestureRecognizerDe
         present(alertController, animated: true, completion: nil)
     }
 
-    func setLocalData() {
-        do {
-         let recipeUD =  try JSONEncoder().encode(recipeList)
-            userDefaults.set(recipeUD, forKey: "Recipes")
-        } catch  {
-           print("error")
-        }
-    }
     
 
     //DELEGATION
     func didAddRecipe(recipe: Recipe) {
-        recipeList.append(recipe)
+        recipeViewModel.recipeList.append(recipe)
+     
         checkCountCondition()
         recipeCollectionView.reloadData()
-        setLocalData()
+        recipeViewModel.setLocalData()
     }
     
     func checkCountCondition() {
-        if recipeList.count == 0 {
+        if recipeViewModel.recipeList.count == 0 {
             conditionLabel.text = "You don't have any saved recipe."
         }
         else  {
@@ -136,26 +120,26 @@ class MainViewController: UIViewController,RecipeDelegate, UIGestureRecognizerDe
 
 extension MainViewController : UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return filteredRecipeList.count != 0 ? filteredRecipeList.count : recipeList.count
+        return recipeViewModel.filteredRecipeList.count != 0 ? recipeViewModel.filteredRecipeList.count : recipeViewModel.recipeList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let recipeCVC = collectionView.dequeueReusableCell(withReuseIdentifier: "recipeCVC", for: indexPath) as? RecipeCollectionViewCell else {return UICollectionViewCell()}
         
-        if !filteredRecipeList.isEmpty {
-            let currentRecipe = filteredRecipeList[indexPath.row]
+        if !recipeViewModel.filteredRecipeList.isEmpty {
+            let currentRecipe = recipeViewModel.filteredRecipeList[indexPath.row]
             recipeCVC.setup(data: currentRecipe)
             conditionLabel.isHidden = true
             collectionView.isHidden = false
             
-        } else if searchTextField.text != "" && filteredRecipeList.isEmpty {
+        } else if searchTextField.text != "" && recipeViewModel.filteredRecipeList.isEmpty {
             conditionLabel.isHidden = false
             conditionLabel.text = "Couldn't find any recipe in this name"
             collectionView.isHidden = true
         }
         else {
-            if recipeList.count > 0 {
-                let currentRecipe = recipeList[indexPath.row]
+            if recipeViewModel.recipeList.count > 0 {
+                let currentRecipe = recipeViewModel.recipeList[indexPath.row]
                 recipeCVC.setup(data: currentRecipe)
                 conditionLabel.isHidden = true
                 collectionView.isHidden = false
@@ -176,10 +160,10 @@ extension MainViewController : UICollectionViewDelegate,UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)  {
         guard let recipeDetailsVC = storyboard?.instantiateViewController(withIdentifier: "RecipeDetailsViewController") as? RecipeDetailsViewController else {return}
         
-        if !filteredRecipeList.isEmpty {
-            recipeDetailsVC.urlString = filteredRecipeList[indexPath.row].webUrl
+        if !recipeViewModel.filteredRecipeList.isEmpty {
+            recipeDetailsVC.urlString = recipeViewModel.filteredRecipeList[indexPath.row].webUrl
         } else {
-            recipeDetailsVC.urlString = recipeList[indexPath.row].webUrl
+            recipeDetailsVC.urlString = recipeViewModel.recipeList[indexPath.row].webUrl
         }
         present(recipeDetailsVC, animated: true)
     }
@@ -193,17 +177,15 @@ extension MainViewController: UITextFieldDelegate {
     func textFieldDidChangeSelection(_ textField: UITextField) {
         
         if searchTextField.text != "",let searchTFValue = searchTextField.text {
-            filteredRecipeList = recipeList.filter { recipe in
+            recipeViewModel.filteredRecipeList = recipeViewModel.recipeList.filter { recipe in
                 return recipe.foodName.lowercased().contains((searchTFValue.lowercased()))
             }
         }
         
         
         else {
-            filteredRecipeList.removeAll()
+            recipeViewModel.filteredRecipeList.removeAll()
         }
-        
-       
         
         recipeCollectionView.reloadData()
     }

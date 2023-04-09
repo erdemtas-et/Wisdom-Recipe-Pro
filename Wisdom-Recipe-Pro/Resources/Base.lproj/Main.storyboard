@@ -76,14 +76,18 @@
                             <constraint firstItem="S1W-TC-MOM" firstAttribute="top" secondItem="frx-tz-cKd" secondAttribute="bottom" constant="62" id="jpD-E3-H29"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="PQt-YU-SXA"/>
+                    <navigationItem key="navigationItem" id="PQt-YU-SXA">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="info.circle.fill" catalog="system" id="ed9-4c-YgU">
+                            <color key="tintColor" red="1" green="0.54585516710000004" blue="0.45046678489999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="mainAnimationView" destination="frx-tz-cKd" id="Gsa-EO-VPG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="953.43511450381675" y="3.5211267605633805"/>
+            <point key="canvasLocation" x="909" y="4"/>
         </scene>
         <!--All Recipes-->
         <scene sceneID="fFR-1d-qWG">
@@ -445,6 +449,7 @@
     </scenes>
     <resources>
         <image name="checkmark" catalog="system" width="128" height="114"/>
+        <image name="info.circle.fill" catalog="system" width="128" height="123"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
