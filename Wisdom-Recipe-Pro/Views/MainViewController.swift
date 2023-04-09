@@ -9,7 +9,6 @@ import UIKit
 
 class MainViewController: UIViewController,RecipeDelegate, UIGestureRecognizerDelegate {
     
-    
     // MARK: - UI Elements
     
     @IBOutlet var recipeCollectionView: UICollectionView!
@@ -27,23 +26,12 @@ class MainViewController: UIViewController,RecipeDelegate, UIGestureRecognizerDe
         hideKeyboard()
         checkCountCondition()
         searchTextField.delegate = self
-        
-        
         recipeViewModel.loadLocalData()
-        
-        
-        func setupLongGestureRecognizerOnCollection() {
-                let longPressedGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(gestureRecognizer:)))
-                longPressedGesture.minimumPressDuration = 0.5
-                longPressedGesture.delegate = self
-                longPressedGesture.delaysTouchesBegan = true
-                recipeCollectionView.addGestureRecognizer(longPressedGesture)
-            }
-            setupLongGestureRecognizerOnCollection()
+        setupLongGestureRecognizerOnCollection()
     }
     
     // MARK: - Functions
-   private func hideBackButton() {
+    private func hideBackButton() {
         navigationItem.setHidesBackButton(true, animated: true)
     }
  
@@ -51,9 +39,16 @@ class MainViewController: UIViewController,RecipeDelegate, UIGestureRecognizerDe
         conditionLabel.isHidden = true
         recipeCollectionView.isHidden = false
     }
-   
     
-  
+    func setupLongGestureRecognizerOnCollection() {
+            let longPressedGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(gestureRecognizer:)))
+            longPressedGesture.minimumPressDuration = 0.5
+            longPressedGesture.delegate = self
+            longPressedGesture.delaysTouchesBegan = true
+            recipeCollectionView.addGestureRecognizer(longPressedGesture)
+        }
+    
+    //
     @objc func handleLongPress(gestureRecognizer: UILongPressGestureRecognizer) {
         if (gestureRecognizer.state != .began) {
             return
@@ -64,6 +59,7 @@ class MainViewController: UIViewController,RecipeDelegate, UIGestureRecognizerDe
         }
     }
     
+    //Show the alert for deleting Recipe
     func deleteAlert(alertTitle: String,alertMessage: String,collectionView: UICollectionView,selectedIndex : Int) {
         let alertController = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
         let deleteAction = UIAlertAction(title: "Yes", style: UIAlertAction.Style.default) { [self]_ in
@@ -100,8 +96,8 @@ class MainViewController: UIViewController,RecipeDelegate, UIGestureRecognizerDe
         guard let addRecipeVC = storyboard?.instantiateViewController(withIdentifier: "addRecipeVC") as? AddRecipeViewController else { return }
         addRecipeVC.recipeDelegate = self
         navigationController?.pushViewController(addRecipeVC, animated: true)
+        }
     }
-}
 
     // MARK: - Extensions
 
