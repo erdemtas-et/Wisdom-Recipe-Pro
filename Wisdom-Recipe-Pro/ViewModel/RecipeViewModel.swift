@@ -5,7 +5,7 @@
 //  Created by Erdem Tas on 9.04.2023.
 //
 
-import Foundation
+import UIKit
 
 class RecipeViewModel {
     let userDefaults = UserDefaults.standard
@@ -16,29 +16,37 @@ class RecipeViewModel {
         return recipeList.count
     }
     
-    func recipe(at index: Int) -> Recipe {
-        return filteredRecipeList.isEmpty ? recipeList[index] : filteredRecipeList[index]
+    var filteredRecipeCount : Int {
+        return filteredRecipeList.count
     }
     
-    func add(recipe: Recipe) {
+    func addRecipe(recipe: Recipe,collectionView : UICollectionView) {
         recipeList.append(recipe)
+        collectionView.reloadData()
         setLocalData()
     }
     
-    func delete(recipe: Recipe) {
-        if let index = recipeList.firstIndex(of: recipe) {
-            recipeList.remove(at: index)
+    func deleteRecipe(selectedIndex: Int) {
+        if !(filteredRecipeList.isEmpty){
+            if let index = recipeList.firstIndex(of: (filteredRecipeList[selectedIndex])) {
+                recipeList.remove(at: index)
+                setLocalData()
+            }
+           filteredRecipeList.remove(at: selectedIndex)
+            setLocalData()
+        } else {
+            recipeList.remove(at: selectedIndex)
             setLocalData()
         }
     }
     
-    func filter(by searchText: String) {
+    func filterRecipe(by searchText: String) {
         filteredRecipeList = recipeList.filter {
             $0.foodName.lowercased().contains(searchText.lowercased())
         }
     }
     
-    func clearFilter() {
+    func clearFilteredRecipeList() {
         filteredRecipeList.removeAll()
     }
     

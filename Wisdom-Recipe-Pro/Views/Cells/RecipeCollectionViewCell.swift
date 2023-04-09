@@ -15,16 +15,7 @@ class RecipeCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
             super.awakeFromNib()
-        layer.cornerRadius = 6.0
-        layer.borderWidth = 1.0
-        layer.borderColor = UIColor.clear.cgColor
-        layer.backgroundColor = UIColor.white.cgColor
-        layer.shadowColor = UIColor.gray.cgColor
-        layer.shadowOffset = CGSize(width: -1.0, height: 2.0)
-        layer.shadowRadius = 4.0
-        layer.shadowOpacity = 2.0
-        layer.masksToBounds = false
-        
+        cellUISetup()
         }
 
     func setup(data: Recipe) {
@@ -34,8 +25,18 @@ class RecipeCollectionViewCell: UICollectionViewCell {
         if let image = UIImage(named: (foodImageList[data.imageName]?.randomElement())!) {
             foodImage.image = image
         }
-        
-        
+    }
+    
+    func cellUISetup() {
+        layer.cornerRadius = 6.0
+        layer.borderWidth = 1.0
+        layer.borderColor = UIColor.clear.cgColor
+        layer.backgroundColor = UIColor.white.cgColor
+        layer.shadowColor = UIColor.gray.cgColor
+        layer.shadowOffset = CGSize(width: -1.0, height: 2.0)
+        layer.shadowRadius = 4.0
+        layer.shadowOpacity = 2.0
+        layer.masksToBounds = false
     }
     
 }

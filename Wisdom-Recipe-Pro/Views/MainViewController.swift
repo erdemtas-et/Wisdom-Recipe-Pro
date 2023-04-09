@@ -47,6 +47,10 @@ class MainViewController: UIViewController,RecipeDelegate, UIGestureRecognizerDe
         navigationItem.setHidesBackButton(true, animated: true)
     }
  
+    private func invalidFilterResult() {
+        conditionLabel.isHidden = true
+        recipeCollectionView.isHidden = false
+    }
    
     
   
@@ -63,43 +67,26 @@ class MainViewController: UIViewController,RecipeDelegate, UIGestureRecognizerDe
     func deleteAlert(alertTitle: String,alertMessage: String,collectionView: UICollectionView,selectedIndex : Int) {
         let alertController = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
         let deleteAction = UIAlertAction(title: "Yes", style: UIAlertAction.Style.default) { [self]_ in
-            if !(self.recipeViewModel.filteredRecipeList.isEmpty){
-                if let index = recipeViewModel.recipeList.firstIndex(of: (recipeViewModel.filteredRecipeList[selectedIndex])) {
-                    self.recipeViewModel.recipeList.remove(at: index)
-                    self.recipeViewModel.setLocalData()
-                    self.recipeCollectionView.reloadData()
-                }
-                self.recipeViewModel.filteredRecipeList.remove(at: selectedIndex)
-                self.recipeViewModel.setLocalData()
-                self.recipeCollectionView.reloadData()
-      
-            } else {
-                self.recipeViewModel.recipeList.remove(at: selectedIndex)
-                self.recipeViewModel.setLocalData()
-                self.recipeCollectionView.reloadData()
-            }
+           
+            recipeViewModel.deleteRecipe(selectedIndex: selectedIndex)
+            recipeCollectionView.reloadData()
         }
         
-       
         let cancelAction = UIAlertAction(title: "No", style: UIAlertAction.Style.cancel)
         alertController.addAction(deleteAction)
         alertController.addAction(cancelAction)
         present(alertController, animated: true, completion: nil)
     }
 
-    
 
     //DELEGATION
     func didAddRecipe(recipe: Recipe) {
-        recipeViewModel.recipeList.append(recipe)
-     
+        recipeViewModel.addRecipe(recipe: recipe,collectionView: recipeCollectionView)
         checkCountCondition()
-        recipeCollectionView.reloadData()
-        recipeViewModel.setLocalData()
     }
     
     func checkCountCondition() {
-        if recipeViewModel.recipeList.count == 0 {
+        if recipeViewModel.recipeCount == 0 {
             conditionLabel.text = "You don't have any saved recipe."
         }
         else  {
@@ -120,17 +107,17 @@ class MainViewController: UIViewController,RecipeDelegate, UIGestureRecognizerDe
 
 extension MainViewController : UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return recipeViewModel.filteredRecipeList.count != 0 ? recipeViewModel.filteredRecipeList.count : recipeViewModel.recipeList.count
+        return recipeViewModel.filteredRecipeCount != 0 ? recipeViewModel.filteredRecipeCount : recipeViewModel.recipeCount
     }
     
+    // Collection View Data Fill
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let recipeCVC = collectionView.dequeueReusableCell(withReuseIdentifier: "recipeCVC", for: indexPath) as? RecipeCollectionViewCell else {return UICollectionViewCell()}
         
         if !recipeViewModel.filteredRecipeList.isEmpty {
             let currentRecipe = recipeViewModel.filteredRecipeList[indexPath.row]
             recipeCVC.setup(data: currentRecipe)
-            conditionLabel.isHidden = true
-            collectionView.isHidden = false
+            invalidFilterResult()
             
         } else if searchTextField.text != "" && recipeViewModel.filteredRecipeList.isEmpty {
             conditionLabel.isHidden = false
@@ -138,22 +125,13 @@ extension MainViewController : UICollectionViewDelegate,UICollectionViewDataSour
             collectionView.isHidden = true
         }
         else {
-            if recipeViewModel.recipeList.count > 0 {
+            if recipeViewModel.recipeCount > 0 {
                 let currentRecipe = recipeViewModel.recipeList[indexPath.row]
                 recipeCVC.setup(data: currentRecipe)
-                conditionLabel.isHidden = true
-                collectionView.isHidden = false
+                invalidFilterResult()
             }
         }
         return recipeCVC
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 160, height: 220)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 10
     }
     
     // Collection View Selected Cell
@@ -168,28 +146,31 @@ extension MainViewController : UICollectionViewDelegate,UICollectionViewDataSour
         present(recipeDetailsVC, animated: true)
     }
     
+    // Collection View UI Setup
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
             return UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         }
-}
-
-extension MainViewController: UITextFieldDelegate {
-    func textFieldDidChangeSelection(_ textField: UITextField) {
-        
-        if searchTextField.text != "",let searchTFValue = searchTextField.text {
-            recipeViewModel.filteredRecipeList = recipeViewModel.recipeList.filter { recipe in
-                return recipe.foodName.lowercased().contains((searchTFValue.lowercased()))
-            }
-        }
-        
-        
-        else {
-            recipeViewModel.filteredRecipeList.removeAll()
-        }
-        
-        recipeCollectionView.reloadData()
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 160, height: 220)
     }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 10
+    }
+}
+
+    //Text Field Delegation
+extension MainViewController: UITextFieldDelegate {
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        if searchTextField.text != "",let searchTFValue = searchTextField.text {
+            recipeViewModel.filterRecipe(by: searchTFValue)
+        }
+        else {
+            recipeViewModel.clearFilteredRecipeList()
+        }
+        recipeCollectionView.reloadData()
+    }
 }
 
 

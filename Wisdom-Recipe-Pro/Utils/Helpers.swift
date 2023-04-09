@@ -11,3 +11,5 @@ let foodImageList : [String: [String]] = [FoodType.salad.rawValue : ["salad"],Fo
                                           FoodType.burger.rawValue : ["burger"],FoodType.pasta.rawValue : ["spaguetti"],FoodType.cake.rawValue : ["panna-cotta"]]
 
 var foodTypes : [FoodType] = [.salad, .dessert, .dinner, .sandwich, .snack,.burger,.cake,.pasta]
+
+
